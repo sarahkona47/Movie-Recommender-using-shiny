@@ -24,22 +24,17 @@ movies_by_genre <- movies %>%
 ```
 
 ```{r language-graph}
-# movies_by_genre %>%
-#   filter(Original_Language == "en") %>% # replace with filter in shiny
-#   select(Genre1, Genre2, genre_count) %>% 
-#   group_by(Genre1) %>% 
-#   mutate(genre_count = n()) %>% 
-#   ungroup() %>% 
-#   group_by(Genre2) %>% 
-#   mutate(genre_count = genre_count + n()) %>% 
-#   arrange(Genre1, Genre2)
+action_count <- 0
 
-movies <- movies %>%
-  mutate(action_count = 0)
+for(x in movies$Genre) {
+   ifelse(str_detect(x, "Action"), 
+       action_count <- action_count + 1, 
+       action_count <- action_count + 0)
+}
 
-ifelse("Action" %in% movies$Genre, 
-       movies$action_count + 1, 
-       movies$action_count)
+action_count
+genres <- data.frame(c(action_count = action_count))
+genres
 ```
 
 
