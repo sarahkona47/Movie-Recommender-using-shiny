@@ -1,0 +1,49 @@
+---
+title: "Movie-Recommender-Project-Draft"
+date: "4/19/2022"
+output: html_document
+---
+
+**Three graphs, shiny app drawing and/or description due on Thursday 4/21**
+
+```{r, include = FALSE}
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r, include = FALSE}
+movies <- read_csv("movies.csv") #replace with file name
+```
+
+```{r movie-genre-separation}
+movies_by_genre <- movies %>%
+  separate(Genre, into = c("Genre1", "Genre2", "Genre3",
+                           "Genre4", "Genre5", "Genre6",
+                           "Genre7"), 
+           sep = ",")
+```
+
+```{r language-graph}
+# movies_by_genre %>%
+#   filter(Original_Language == "en") %>% # replace with filter in shiny
+#   select(Genre1, Genre2, genre_count) %>% 
+#   group_by(Genre1) %>% 
+#   mutate(genre_count = n()) %>% 
+#   ungroup() %>% 
+#   group_by(Genre2) %>% 
+#   mutate(genre_count = genre_count + n()) %>% 
+#   arrange(Genre1, Genre2)
+
+movies <- movies %>%
+  mutate(action_count = 0)
+
+ifelse("Action" %in% movies$Genre, 
+       movies$action_count + 1, 
+       movies$action_count)
+```
+
+
+```{r}
+
+```
+
