@@ -12,10 +12,10 @@ library(ggplot2)
 ```
 
 ```{r, include = FALSE}
-movies <- read_csv("movies.csv") #replace with file name
+movies <- read_csv("mymoviedb.csv") #replace with file name
 ```
 
-```{r movie-genre-separation}
+```{r movie-genre-separation, warning = FALSE}
 movies_by_genre <- movies %>%
   separate(Genre, into = c("Genre1", "Genre2", "Genre3",
                            "Genre4", "Genre5", "Genre6",
@@ -23,18 +23,25 @@ movies_by_genre <- movies %>%
            sep = ",")
 ```
 
-```{r language-graph}
-action_count <- 0
+```{r genre-counts}
+genre_list <- movies_by_genre$Genre1 %>% 
+  unique()
+
+genre_df <- data.frame(genre_name = genre_list)
+genre_df$genre_count <- replicate(nrow(genre_df), 0)
 
 for(x in movies$Genre) {
-   ifelse(str_detect(x, "Action"), 
-       action_count <- action_count + 1, 
-       action_count <- action_count + 0)
+  for(gen in 1:nrow(genre_df)) {
+    row <- genre_df[gen,]
+    ifelse(str_detect(x, row$genre_name),
+       row$genre_count <- row$genre_count + 1,
+       row$genre_count <- row$genre_count + 0)
+    genre_df[gen, ] <- row
+  }
 }
 
-action_count
-genres <- data.frame(c(action_count = action_count))
-genres
+genre_df
+
 ```
 
 
