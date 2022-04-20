@@ -1,0 +1,32 @@
+---
+title: "top_20_graph"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(lubridate) 
+library(ggthemes)  
+```
+
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+project_data <- read_csv("mymoviedb.csv")
+```
+
+
+```{r, fig.height= 3}
+project_data %>%
+  arrange(desc(Popularity)) %>%
+  select(Title, Popularity) %>%
+  top_n(20) %>%
+  ggplot(aes(x = Popularity, y = fct_reorder(Title,Popularity))) + 
+  geom_col()  + 
+  ggtitle("Top 20 Movies by Popularity") + 
+  ylab("")
+```
+
