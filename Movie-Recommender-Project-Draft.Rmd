@@ -15,7 +15,7 @@ library(ggplot2)
 ```
 
 ```{r, include = FALSE}
-movies <- read_csv("mymoviedb.csv") #replace with file name
+movies <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/2992296bc6ebffdebe766acc1b4704edbc557478/mymoviedb.csv")
 ```
 
 ```{r movie-genre-separation, warning = FALSE}
@@ -78,6 +78,7 @@ movies %>%
   ylab("") + 
   theme_minimal()
 ```
+
 ```{r date-distribution}
 #this graph is kinda useless
 movies %>% 
@@ -108,4 +109,5 @@ movies %>%
        caption = "Ratings on a scale of 0-10, with higher values indicating better scores.\nData based on consumer ratings from TMDB.") +
   theme_minimal()
 ```
+
 
