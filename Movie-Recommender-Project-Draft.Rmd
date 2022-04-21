@@ -1,0 +1,111 @@
+---
+title: "Movie-Recommender-Project-Draft"
+date: "4/19/2022"
+output: html_document
+---
+
+**Three graphs, shiny app drawing and/or description due on Thursday 4/21**
+
+**DESCRIPTION**
+We plan to make a shiny apps with two main portions, separated by tabs. The first tab will be a data visualization tab, where we allow users to choose movies from a certain language and of a certian genre. Then, we will show them related data visualizations, which we have started below. The code for these graphs will be updated to reflect the fact that users will input parameters dictating the graph's appearance in the Shiny app. The second tab will be a "recommender" tab where users can input language, genre, etc. and they will be recommended a series of movies. We plan to display the poster, release date, description, and other features that are present in the dataset. 
+
+```{r, include = FALSE}
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r, include = FALSE}
+movies <- read_csv("mymoviedb.csv") #replace with file name
+```
+
+```{r movie-genre-separation, warning = FALSE}
+movies_by_genre <- movies %>%
+  separate(Genre, into = c("Genre1", "Genre2", "Genre3",
+                           "Genre4", "Genre5", "Genre6",
+                           "Genre7"), 
+           sep = ",")
+```
+
+```{r genre-counts}
+genre_list <- movies_by_genre$Genre1 %>% 
+  unique()
+
+genre_df <- data.frame(genre_name = genre_list)
+genre_df$genre_count <- replicate(nrow(genre_df), 0)
+
+movies_language <- movies %>% 
+  filter(Original_Language == "en") #replace with shiny app selector
+
+for(x in movies_language$Genre) { 
+  #can replace movies_language with movies for full count
+  for(gen in 1:nrow(genre_df)) {
+    row <- genre_df[gen,]
+    ifelse(str_detect(x, row$genre_name),
+       row$genre_count <- row$genre_count + 1,
+       row$genre_count <- row$genre_count + 0)
+    genre_df[gen, ] <- row
+  }
+}
+
+genre_df
+
+```
+
+
+```{r language-graph}
+genre_df %>% 
+  ggplot(aes(x = genre_count, 
+             y = fct_reorder(genre_name, genre_count))) +
+  geom_col() +
+  labs(x = "Total Number of Movies", y = "", 
+       title = "Number of Movies in Each Genre for xxxx Language") +
+  theme_minimal() 
+```
+
+```{r popularity-graph}
+movies %>%
+  filter(Original_Language == "en") %>% 
+  filter(between(Release_Date, 
+                 as.Date("2020-10-4"), 
+                 as.Date("2021-10-4"))) %>% 
+  filter("Action" %in% Genre) %>% 
+  arrange(desc(Popularity)) %>%
+  select(Title, Popularity) %>%
+  top_n(20) %>%
+  ggplot(aes(x = Popularity, y = fct_reorder(Title,Popularity))) + 
+  geom_col()  + 
+  ggtitle("Top 20 Movies by Popularity") + 
+  ylab("") + 
+  theme_minimal()
+```
+```{r date-distribution}
+#this graph is kinda useless
+movies %>% 
+  mutate(year = lubridate::year(Release_Date)) %>% 
+  group_by(year) %>% 
+  mutate(count = n()) %>% 
+  ungroup() %>% 
+  ggplot(aes(y = Release_Date)) + 
+  geom_density() + 
+  coord_flip() + 
+  theme_minimal()
+```
+
+```{r rating-graph}
+movies %>%
+  filter(Original_Language == "en") %>% 
+  filter(between(Release_Date, 
+                 as.Date("2020-10-4"), 
+                 as.Date("2021-10-4"))) %>% 
+  filter("Action" %in% Genre) %>% 
+  arrange(desc(Vote_Average)) %>%
+  select(Title, Vote_Average) %>%
+  top_n(20) %>%
+  ggplot(aes(x = Vote_Average, y = fct_reorder(Title,Vote_Average))) + 
+  geom_col() + 
+  labs(x = "Average Rating", y = "",
+       title = "Top 20 Average Movie Ratings",
+       caption = "Ratings on a scale of 0-10, with higher values indicating better scores.\nData based on consumer ratings from TMDB.") +
+  theme_minimal()
+```
+
