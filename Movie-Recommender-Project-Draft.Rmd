@@ -15,8 +15,21 @@ library(ggplot2)
 ```
 
 ```{r, include = FALSE}
+<<<<<<< HEAD
 movies <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/2992296bc6ebffdebe766acc1b4704edbc557478/mymoviedb.csv")
+=======
+movies <- read_csv("mymoviedb.csv") #replace with file name
+language <- read_csv("language-codes.csv")
+>>>>>>> 3276e3c26ffae337dbb119075346bff5599f45ef
 ```
+
+```{r language-joining, include = FALSE}
+movies <- merge(movies, language, by.x = "Original_Language", 
+      by.y = "alpha2")
+
+names(movies)[names(movies) == "English"] <- "language"
+```
+
 
 ```{r movie-genre-separation, warning = FALSE}
 movies_by_genre <- movies %>%
@@ -65,10 +78,10 @@ genre_df %>%
 ```{r popularity-graph}
 movies %>%
   filter(Original_Language == "en") %>% 
-  filter(between(Release_Date, 
-                 as.Date("2020-10-4"), 
-                 as.Date("2021-10-4"))) %>% 
-  filter("Action" %in% Genre) %>% 
+  filter(between(Release_Date,
+                 as.Date("2020-10-4"),
+                 as.Date("2021-10-4"))) %>%
+  filter("Action" %in% Genre) %>%
   arrange(desc(Popularity)) %>%
   select(Title, Popularity) %>%
   top_n(20) %>%
@@ -92,7 +105,7 @@ movies %>%
   theme_minimal()
 ```
 
-```{r rating-graph}
+```{r rating-graph, fig.height = 4}
 movies %>%
   filter(Original_Language == "en") %>% 
   filter(between(Release_Date, 
@@ -103,10 +116,11 @@ movies %>%
   select(Title, Vote_Average) %>%
   top_n(20) %>%
   ggplot(aes(x = Vote_Average, y = fct_reorder(Title,Vote_Average))) + 
-  geom_col() + 
+  geom_col(width = 0.75) + 
   labs(x = "Average Rating", y = "",
        title = "Top 20 Average Movie Ratings",
        caption = "Ratings on a scale of 0-10, with higher values indicating better scores.\nData based on consumer ratings from TMDB.") +
+  scale_y_discrete(labels = function(x) str_wrap(x, width = 30)) +
   theme_minimal()
 ```
 
