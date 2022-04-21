@@ -54,7 +54,8 @@ genre_df
 
 ```{r language-graph}
 genre_df %>% 
-  ggplot(aes(x = genre_count, y = fct_reorder(genre_name, genre_count))) +
+  ggplot(aes(x = genre_count, 
+             y = fct_reorder(genre_name, genre_count))) +
   geom_col() +
   labs(x = "Total Number of Movies", y = "", 
        title = "Number of Movies in Each Genre for xxxx Language") +
@@ -63,6 +64,11 @@ genre_df %>%
 
 ```{r popularity-graph}
 movies %>%
+  filter(Original_Language == "en") %>% 
+  filter(between(Release_Date, 
+                 as.Date("2020-10-4"), 
+                 as.Date("2021-10-4"))) %>% 
+  filter("Action" %in% Genre) %>% 
   arrange(desc(Popularity)) %>%
   select(Title, Popularity) %>%
   top_n(20) %>%
@@ -88,11 +94,15 @@ movies %>%
 ```{r rating-graph}
 movies %>%
   filter(Original_Language == "en") %>% 
+  filter(between(Release_Date, 
+                 as.Date("2020-10-4"), 
+                 as.Date("2021-10-4"))) %>% 
+  filter("Action" %in% Genre) %>% 
   arrange(desc(Vote_Average)) %>%
   select(Title, Vote_Average) %>%
   top_n(20) %>%
   ggplot(aes(x = Vote_Average, y = fct_reorder(Title,Vote_Average))) + 
-  geom_col()  + 
+  geom_col() + 
   labs(x = "Average Rating", y = "",
        title = "Top 20 Average Movie Ratings",
        caption = "Ratings on a scale of 0-10, with higher values indicating better scores.\nData based on consumer ratings from TMDB.") +
