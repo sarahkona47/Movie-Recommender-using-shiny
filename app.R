@@ -17,8 +17,11 @@ ui <- fluidPage(
                                       language = "en",
                                       separator = " to ")), 
               tabPanel("Tab 2", "Movie Recommender", 
-                       textInput(inputId = "Genre", label = "Genre:",  unique(movie$Genre), multiple = TRUE ),
-                       submitButton(text = "Search", icon = NULL, width = NULL))))
+                       selectInput(inputId = "Genre", label = "Genre:",  unique(genre_df$genre_name), multiple = TRUE ),
+                       submitButton(text = "Search", icon = NULL, width = NULL),
+img(src = "https://image.tmdb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg", height = 300, width = 250),
+img(src = "https://image.tmdb.org/t/p/original/74xTEgt7R36Fpooo50r9T25onhq.jpg", height = 300, width = 250))))
+
 # sliderInput(inputId = "date", 
 #             label = "Release Date Range",
 #             min = as.Date(min(movie$Release_Date)), 
