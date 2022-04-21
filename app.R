@@ -35,31 +35,10 @@ ui <- fluidPage(
                        plotOutput(outputId = "movieplot")
                        ), 
               tabPanel("Tab 2", "Movie Recommender", 
-<<<<<<< HEAD
-                       textInput(inputId = "Genre", label = "Genre:",  unique(movie$Genre)),
-                       submitButton(text = "Search", icon = NULL, width = NULL))),
-
- )
-
-
-server <- function(input, output) {
-  output$movieplot <- renderPlot(
-    movies_by_genre %>% 
-      filter(Original_Language == input$lang,
-             Genre1 %in% input$genre) %>%
-      arrange(desc(Popularity)) %>% 
-      select(Title, Popularity) %>% 
-      top_n(20) %>% 
-      ggplot(aes(x = Popularity, y = fct_reorder(Title, Popularity))) +
-      geom_col(fill = "lightblue") +
-      labs(title = "Top Movies in Selected Language and Genre", y = "", caption = "Popularity metric is computed by TMDB developers based on the number of views per day, \nvotes per day, number of users marked it as 'favorite' and 'watchlist' for the data, release date and more other metrics") +
-      theme(plot.caption = element_text(hjust = 0.5)) +
-      theme_minimal()
-  )
-=======
                        selectInput(inputId = "Genre", label = "Genre:",  unique(genre_df$genre_name), multiple = TRUE ),
                        submitButton(text = "Search", icon = NULL, width = NULL),
-                       imageOutput("myImage"))))
+                       imageOutput("myImage")))
+  )
 #img(src = "https://image.tmdb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg", height = 300, width = 250),
 #img(src = "https://image.tmdb.org/t/p/original/74xTEgt7R36Fpooo50r9T25onhq.jpg", height = 300, width = 250))))
 
@@ -78,12 +57,26 @@ server <- function(input, output) {
 # submitButton(text = "Create my plot!")
 
 
-server <- function(input, output) {output$myImage <- renderImage({
+server <- function(input, output) {
+  output$movieplot <- renderPlot(
+    movies_by_genre %>% 
+      filter(Original_Language == input$lang,
+             Genre1 %in% input$genre) %>%
+      arrange(desc(Popularity)) %>% 
+      select(Title, Popularity) %>% 
+      top_n(20) %>% 
+      ggplot(aes(x = Popularity, y = fct_reorder(Title, Popularity))) +
+      geom_col(fill = "lightblue") +
+      labs(title = "Top Movies in Selected Language and Genre", y = "", caption = "Popularity metric is computed by TMDB developers based on the number of views per day, \nvotes per day, number of users marked it as 'favorite' and 'watchlist' for the data, release date and more other metrics") +
+      theme(plot.caption = element_text(hjust = 0.5)) +
+      theme_minimal()
+  ) 
+  output$myImage <- renderImage({
     # A temp file to save the output.
     # This file will be removed later by renderImage
     movie_base_on_genre <- movie %>% 
       filter(Genre == input$inputId)
-      #filter(str_detect(Genre, input$inputId))
+    #filter(str_detect(Genre, input$inputId))
     
     for(x in movie_base_on_genre$Poster_Url){
       img(src = x, height = 300, width = 250)
@@ -103,7 +96,6 @@ server <- function(input, output) {output$myImage <- renderImage({
          height = 300,
          alt = "This is alternate text")
   }, deleteFile = TRUE)
->>>>>>> 3276e3c26ffae337dbb119075346bff5599f45ef
-}
+}                       
 
 shinyApp(ui = ui, server = server)
