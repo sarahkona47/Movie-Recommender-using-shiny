@@ -1,0 +1,22 @@
+---
+title: "Project Draft Graphs"
+output: html_document
+---
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyverse)
+```
+
+```{r}
+movie <- read_csv("~/Documents/COMP 112/mymoviedb.csv")
+```
+
+```{r}
+movie %>% 
+  arrange(desc(Vote_Average)) %>% 
+  select(Release_Date, Vote_Average)
+  
+```
+
