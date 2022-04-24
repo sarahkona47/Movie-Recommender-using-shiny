@@ -38,10 +38,10 @@ ui <- fluidPage(
                        selectInput(inputId = "Genre", label = "Genre:",  unique(movies_by_genre$Genre1), multiple = TRUE ),
                        submitButton(text = "Search", icon = NULL, width = NULL),
                        #img(src = "https://image.tmdb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg", height = 300, width = 250),
-                       imageOutput("myImage")))
+                       htmlOutput("picture", inline = TRUE)))
+                     
   )
 
-#img(src = "https://image.tmdb.org/t/p/original/74xTEgt7R36Fpooo50r9T25onhq.jpg", height = 300, width = 250))))
 
 # sliderInput(inputId = "date", 
 #             label = "Release Date Range",
@@ -72,24 +72,17 @@ server <- function(input, output) {
       theme(plot.caption = element_text(hjust = 0.5)) +
       theme_minimal()
   )
-  output$myImage <- renderImage(
-    
-   movies_by_genre %>% 
+  output$picture <- renderText({
+
+   link <- movies_by_genre %>%
       filter(Genre1 %in% input$Genre) %>%
-      arrange(desc(Popularity)) %>% 
-      select(Poster_Url, Popularity) %>% 
-      top_n(1) %>% 
-      img(src = Poster_Url, height = 300, width = 250))
-    
-    #   outfile <- tempfile(fileext=movies_by_genre$Poster_Url)
-    #   jpeg(outfile, width=250, height=300)
-    #   #dev.off()
-    #   
-    #   # Return a list
-    #   list(src = outfile,
-    #        alt = "This is alternate text")
-    # }, deleteFile = FALSE)
-    
+      arrange(desc(Popularity)) %>%
+      select(Poster_Url, Popularity) %>%
+      top_n(1)
+
+   src = link$Poster_Url
+   c('<img src="',src,'">')})
+ 
 
 }                       
 
