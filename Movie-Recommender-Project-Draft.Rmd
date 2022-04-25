@@ -15,12 +15,12 @@ library(ggplot2)
 ```
 
 ```{r, include = FALSE}
-<<<<<<< HEAD
+
 movies <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/2992296bc6ebffdebe766acc1b4704edbc557478/mymoviedb.csv")
-=======
+
 movies <- read_csv("mymoviedb.csv") #replace with file name
 language <- read_csv("language-codes.csv")
->>>>>>> 3276e3c26ffae337dbb119075346bff5599f45ef
+
 ```
 
 ```{r language-joining, include = FALSE}
