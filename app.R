@@ -34,28 +34,18 @@ ui <- fluidPage(
                        submitButton(text = "Create my plot!", icon = NULL, width = NULL), 
                        plotOutput(outputId = "movieplot")
                        ), 
-              tabPanel("Search By Genre", "Movie Recommender", 
-                       selectInput(inputId = "Genre", label = "Genre:",  unique(movies_by_genre$Genre1), multiple = TRUE ),
-                       submitButton(text = "Search", icon = NULL, width = NULL),
+              tabPanel("Search By Genre", "Movie Recommender (Based on Popularity)", 
+                       selectInput(inputId = "Genre", 
+                                   label = "Genre:",  
+                                   unique(movies_by_genre$Genre1), 
+                                   multiple = TRUE ),
+                       submitButton(text = "Search", 
+                                    icon = NULL, 
+                                    width = NULL),
                        #img(src = "https://image.tmdb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg", height = 300, width = 250),
                        htmlOutput("picture", inline = TRUE)))
                      
   )
-
-
-# sliderInput(inputId = "date", 
-#             label = "Release Date Range",
-#             min = as.Date(min(movie$Release_Date)), 
-#             max = as.Date(max(movie$Release_Date)), 
-#             value = c(as.Date(min(movie$Release_Date)), as.Date(max(movie$Release_Date)))),
-# textInput("name", 
-#           "Name", 
-#           value = "", 
-#           placeholder = "Lisa"),
-# selectInput("sex", 
-#             "Sex", 
-#             choices = list(Female = "F", Male = "M")),
-# submitButton(text = "Create my plot!")
 
 
 server <- function(input, output) {
