@@ -78,12 +78,13 @@ server <- function(input, output) {
       filter(Genre1 %in% input$Genre) %>%
       arrange(desc(Popularity)) %>%
       select(Poster_Url, Popularity) %>%
-      top_n(1)
+      top_n(4)
 
    src = link$Poster_Url
-   c('<img src="',src,'" width = 500, height = 600>')})
- 
-
+   c('<img src="',nth(src,1),'" width = 300, height = 400> <img src="',nth(src,2),'" width = 300, height = 400> <img src="',nth(src,3),'" width = 300, height = 400> <img src="',nth(src,4),'" width = 300, height = 400>')})
+  
+   
+   
 }                       
 
 shinyApp(ui = ui, server = server)
