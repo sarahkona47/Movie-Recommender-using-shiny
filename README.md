@@ -14,7 +14,7 @@ Our team felt that making a web app using Shiny was the one of most useful appli
 ## 📊 Data 
 (Specification of your data sources and collection process.)
 
-The Movie Recommender App is built upon a movie dataset with 9000+ movies. This is a publicly accessible dataset and was retrieved from Kaggle.com. 
+Our app is built upon a movie dataset with 9000+ movies. This is a publicly accessible dataset and was retrieved from Kaggle.com. 
 
 Variabls in our dataset:
 - Release_Date: Date when the movie was released.
