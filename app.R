@@ -81,7 +81,7 @@ server <- function(input, output) {
       top_n(1)
 
    src = link$Poster_Url
-   c('<img src="',src,'">')})
+   c('<img src="',src,'" width = 500, height = 600>')})
  
 
 }                       
