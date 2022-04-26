@@ -36,9 +36,6 @@ ui <- fluidPage(
                        plotOutput(outputId = "movieplot")
                        ), 
 
-              tabPanel("Search By Genre", "Movie Recommender Based On Popularity", 
-                       selectInput(inputId = "Genre", label = "Genre:",  unique(movies_by_genre$Genre1), multiple = TRUE ),
-                       submitButton(text = "Search", icon = NULL, width = NULL),
 
               tabPanel("Search By Genre", "Movie Recommender (Based on Popularity)", 
                        selectInput(inputId = "Genre", 
@@ -56,8 +53,8 @@ ui <- fluidPage(
                        tipify(htmlOutput("picture", inline = TRUE), textOutput("txt1"), placement="bottom", trigger = "hover"),
                        tipify(htmlOutput("picture2", inline = TRUE),"txt2", placement="bottom", trigger = "hover"),
                        tipify(htmlOutput("picture3", inline = TRUE), "txt3", placement="right", trigger = "hover")
-              ))))
-          
+              )))
+        
                      
   
 
