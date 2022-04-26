@@ -1,6 +1,7 @@
 library(shiny)
 library(tidyverse)
 library(ggplot2)
+library(shinyBS)
 library(rsconnect)
 movie <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/2992296bc6ebffdebe766acc1b4704edbc557478/mymoviedb.csv")
 
@@ -34,11 +35,18 @@ ui <- fluidPage(
                        submitButton(text = "Create my plot!", icon = NULL, width = NULL), 
                        plotOutput(outputId = "movieplot")
                        ), 
-              tabPanel("Search By Genre", "Movie Recommender", 
+              tabPanel("Search By Genre", "Movie Recommender Based On Popularity", 
                        selectInput(inputId = "Genre", label = "Genre:",  unique(movies_by_genre$Genre1), multiple = TRUE ),
                        submitButton(text = "Search", icon = NULL, width = NULL),
                        #img(src = "https://image.tmdb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg", height = 300, width = 250),
-                       htmlOutput("picture", inline = TRUE)))
+                       #tipify(htmlOutput("picture", inline = TRUE), "Hello again! This is a click-able pop-up", placement="bottom", trigger = "click")
+                       # bsTooltip(id = "someInput", title = "This is an input", 
+                       #                                                 placement = "left", trigger = "hover")
+                       tipify(htmlOutput("picture", inline = TRUE), textOutput("txt1"), placement="bottom", trigger = "hover"),
+                       tipify(htmlOutput("picture2", inline = TRUE),"txt2", placement="bottom", trigger = "hover"),
+                       tipify(htmlOutput("picture3", inline = TRUE), "txt3", placement="right", trigger = "hover")
+              ))
+          
                      
   )
 
@@ -58,7 +66,7 @@ ui <- fluidPage(
 # submitButton(text = "Create my plot!")
 
 
-server <- function(input, output) {
+server <- function(input, output, session) {
   output$movieplot <- renderPlot(
     movies_by_genre %>%
       filter(Original_Language == input$lang,
@@ -77,12 +85,45 @@ server <- function(input, output) {
    link <- movies_by_genre %>%
       filter(Genre1 %in% input$Genre) %>%
       arrange(desc(Popularity)) %>%
-      select(Poster_Url, Popularity) %>%
-      top_n(4)
+      select(Poster_Url, Overview, Popularity) %>%
+      slice_max(n = 4, order_by = Popularity)
 
    src = link$Poster_Url
-   c('<img src="',nth(src,1),'" width = 300, height = 400> <img src="',nth(src,2),'" width = 300, height = 400> <img src="',nth(src,3),'" width = 300, height = 400> <img src="',nth(src,4),'" width = 300, height = 400>')})
+   #c('<img src="',nth(src,1),'" width = 300, height = 400> <img src="',nth(src,2),'" width = 300, height = 400> <img src="',nth(src,3),'" width = 300, height = 400> <img src="',nth(src,4),'" width = 300, height = 400>')})
+   c('<img src="',nth(src,1),'" width = 300, height = 400>')})
+  # addTooltip(session, id = "someInput", title = "This is an input.",
+  #            placement = "left", trigger = "hover")})
+  output$picture2 <- renderText({
+    
+    link <- movies_by_genre %>%
+      filter(Genre1 %in% input$Genre) %>%
+      arrange(desc(Popularity)) %>%
+      select(Poster_Url, Popularity) %>%
+      top_n(4)
+    
+    src = link$Poster_Url
+    c('<img src="',nth(src,2),'" width = 300, height = 400>')}) 
   
+  output$picture3 <- renderText({
+    
+    link <- movies_by_genre %>%
+      filter(Genre1 %in% input$Genre) %>%
+      arrange(desc(Popularity)) %>%
+      select(Poster_Url, Popularity) %>%
+      top_n(4)
+    
+    src = link$Poster_Url
+    c('<img src="',nth(src,3),'" width = 300, height = 400>')}) 
+  
+  output$txt1  <- renderText({
+    link <- movies_by_genre %>%
+      filter(Genre1 %in% input$Genre) %>%
+      arrange(desc(Popularity)) %>%
+      select(Poster_Url, Popularity) %>%
+      top_n(4)
+    txt = link$Overview
+    c(nth(txt,1))
+  })
    
    
 }                       
