@@ -3,7 +3,7 @@ library(tidyverse)
 library(ggplot2)
 library(shinyBS)
 library(rsconnect)
-movie <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/2992296bc6ebffdebe766acc1b4704edbc557478/mymoviedb.csv")
+movie <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/datasetnew/movies_with_lang.csv")
 
 
 movies_by_genre <- movie %>%
@@ -16,7 +16,7 @@ ui <- fluidPage(
   tabsetPanel(tabPanel("Popularity", "Explore the Movies ",
                        selectInput(inputId = "lang", 
                                    label = "Language Choice", 
-                                   choices = unique(movies_by_genre$Original_Language)), 
+                                   choices = unique(movies_by_genre$language)), 
                        # dateRangeInput(inputId = "date",
                        #                label = "Release Date Range",
                        #                start = as.Date(min(movies_by_genre$Release_Date)),
@@ -60,7 +60,7 @@ server <- function(input, output){
 
   output$movieplot <- renderPlot(
     movies_by_genre %>%
-      filter(Original_Language == input$lang,
+      filter(language == input$lang,
              Genre1 %in% input$genre) %>%
       arrange(desc(Popularity)) %>%
       select(Title, Popularity) %>%
@@ -68,8 +68,7 @@ server <- function(input, output){
       ggplot(aes(x = Popularity, y = fct_reorder(Title, Popularity))) +
       geom_col(fill = "lightblue") +
       labs(title = "Top Movies in Selected Language and Genre", y = "", caption = "Popularity metric is computed by TMDB developers based on the number of views per day, \nvotes per day, number of users marked it as 'favorite' and 'watchlist' for the data, release date and more other metrics") +
-      theme(plot.caption = element_text(hjust = 0.5)) +
-      theme_minimal()
+      theme(plot.caption = element_text(hjust = 0.5))
   )
   output$picture <- renderText({
 
