@@ -1,11 +1,12 @@
-# Movie Recommender App
+# **InfinityWatch** (Movie Recommender App)
 
+DS 112 Final Project 
 **Creators**: Kenny Nhan, Alex Shevchenko, Sarah Choi, Marshall Roll
 
 ## Introduction & Background 
 (An introduction that motivates & outlines a clear, specific set of research questions. Also, provide some background on your topic)
 
-Everyone enjoys watching movies! Don't know what to watch next? Use our app! Want to explore a huge dataset of movies? Create plots using our app!
+Everyone enjoys watching movies! Don't know what to watch next? Use our app, InfinityWatch, where we will supply you with recommendations and movie analytics! Want to explore a huge dataset of movies? Explore our visualizations using InfinityWatch!
 
 Our team felt that making a web app using Shiny was the one of most useful applications from this course. We envisioned a Movie Recommender App that has multiple tabs which also provides Movie recommendations while also providing data visualizations of the dataset. 
 
