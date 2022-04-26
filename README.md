@@ -2,7 +2,7 @@
 
 **Creators**: Kenny Nhan 👦🏻, Alex Shevchenko 👱🏼‍♂️, Sarah Choi 👩🏻, Marshall Roll 👱🏻‍♂️
 
-## Introduction & Background 🖥
+## 🖥 Introduction & Background 
 (An introduction that motivates & outlines a clear, specific set of research questions. Also, provide some background on your topic)
 
 Everyone enjoys watching movies! Don't know what to watch next? Use our app, **Infinity♾Watch**, where we will supply you with recommendations and movie analytics! Want to explore a huge dataset of movies? Explore our visualizations using **Infinity♾Watch**!
@@ -11,7 +11,7 @@ Everyone enjoys watching movies! Don't know what to watch next? Use our app, **I
 
 Our team felt that making a web app using Shiny was the one of most useful applications from this course. We envisioned a Movie Recommender App that has multiple tabs which also provides Movie recommendations while also providing data visualizations of the dataset. This project reflects the meaningful learning and collaboration in COMP/STAT 112. 
 
-## Data 📊
+## 📊 Data 
 (Specification of your data sources and collection process.)
 
 The Movie Recommender App is built upon a movie dataset with 9000+ movies. This is a publicly accessible dataset and was retrieved from Kaggle.com. 
@@ -29,7 +29,7 @@ Variabls in our dataset:
 
 If you would like to explore or gain ddditional information regarding the dataset, you can visit dataset's original source. (Link: https://www.kaggle.com/datasets/disham993/9000-movies-dataset)
 
-## Navigating the App 👩🏻‍💻
+## 👩🏻‍💻 Navigating the App 
 (This is the bulk of the report which either has a presentation of the group’s key findings and take-aways or gives the detail of how someone would interact and what people should take away from the shiny app. If you choose to do a shiny app, be sure to include a link to the shinyapps.io site.)
 
 **Infinity♾Watch** is very easy to navigate! Anyone is able to access **Infinity♾Watch** and its features using the following link:(web application)
@@ -46,7 +46,7 @@ The **main features** of the app includes:
 
 Upon utilizing our app, we hope that our users are able to gain/observe insightful information about the movies dataset while be given good recommendations of what to watch next!
 
-## Acknowledgements 🧠
+## 🧠 Acknowledgements 
 
 The creators of the app would like to acknowledge Professor Lauren Milne for the insights, guidance, and feedback througout the app building process. 
 
