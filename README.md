@@ -1,6 +1,7 @@
 # **InfinityWatch** (Movie Recommender App)
 
 DS 112 Final Project 
+
 **Creators**: Kenny Nhan, Alex Shevchenko, Sarah Choi, Marshall Roll
 
 ## Introduction & Background 
