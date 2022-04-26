@@ -35,9 +35,20 @@ ui <- fluidPage(
                        submitButton(text = "Create my plot!", icon = NULL, width = NULL), 
                        plotOutput(outputId = "movieplot")
                        ), 
+
               tabPanel("Search By Genre", "Movie Recommender Based On Popularity", 
                        selectInput(inputId = "Genre", label = "Genre:",  unique(movies_by_genre$Genre1), multiple = TRUE ),
                        submitButton(text = "Search", icon = NULL, width = NULL),
+
+              tabPanel("Search By Genre", "Movie Recommender (Based on Popularity)", 
+                       selectInput(inputId = "Genre", 
+                                   label = "Genre:",  
+                                   unique(movies_by_genre$Genre1), 
+                                   multiple = TRUE ),
+                       submitButton(text = "Search", 
+                                    icon = NULL, 
+                                    width = NULL),
+
                        #img(src = "https://image.tmdb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg", height = 300, width = 250),
                        #tipify(htmlOutput("picture", inline = TRUE), "Hello again! This is a click-able pop-up", placement="bottom", trigger = "click")
                        # bsTooltip(id = "someInput", title = "This is an input", 
@@ -45,10 +56,11 @@ ui <- fluidPage(
                        tipify(htmlOutput("picture", inline = TRUE), textOutput("txt1"), placement="bottom", trigger = "hover"),
                        tipify(htmlOutput("picture2", inline = TRUE),"txt2", placement="bottom", trigger = "hover"),
                        tipify(htmlOutput("picture3", inline = TRUE), "txt3", placement="right", trigger = "hover")
-              ))
+              ))))
           
                      
-  )
+  
+
 
 
 # sliderInput(inputId = "date", 
@@ -66,7 +78,10 @@ ui <- fluidPage(
 # submitButton(text = "Create my plot!")
 
 
-server <- function(input, output, session) {
+
+
+server <- function(input, output){
+
   output$movieplot <- renderPlot(
     movies_by_genre %>%
       filter(Original_Language == input$lang,
