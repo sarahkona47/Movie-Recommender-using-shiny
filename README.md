@@ -1,7 +1,5 @@
 # **InfinityWatch** (Movie Recommender App)
 
-DS 112 Final Project 
-
 **Creators**: Kenny Nhan, Alex Shevchenko, Sarah Choi, Marshall Roll
 
 ## Introduction & Background 
@@ -9,7 +7,7 @@ DS 112 Final Project
 
 Everyone enjoys watching movies! Don't know what to watch next? Use our app, **InfinityWatch**, where we will supply you with recommendations and movie analytics! Want to explore a huge dataset of movies? Explore our visualizations using **InfinityWatch**!
 
-Our team felt that making a web app using Shiny was the one of most useful applications from this course. We envisioned a Movie Recommender App that has multiple tabs which also provides Movie recommendations while also providing data visualizations of the dataset. 
+Our team felt that making a web app using Shiny was the one of most useful applications from this course. We envisioned a Movie Recommender App that has multiple tabs which also provides Movie recommendations while also providing data visualizations of the dataset. This project reflects the meaningful learning and collaboration in COMP/STAT 112. 
 
 ## Data 
 (Specification of your data sources and collection process.)
@@ -30,9 +28,9 @@ Features of the dataset:
 ## Navigating the App
 (This is the bulk of the report which either has a presentation of the group’s key findings and take-aways or gives the detail of how someone would interact and what people should take away from the shiny app. If you choose to do a shiny app, be sure to include a link to the shinyapps.io site.)
 
-**InfinityApp** is very easy to navigate! You can access the app using the following link: **Link to APP:** (web application)
+**InfinityApp** is very easy to navigate! Anyone is able to access **InfinityWatch** and its features using the following link:(web application)
 
-Main features:
+The main features of the app includes:
 
 1. Tab 1: Analytics 
 - In this tab, you are able to explore the dataset and create interactive plots. The user is able to input parameters (Language, Genre, etc). 
