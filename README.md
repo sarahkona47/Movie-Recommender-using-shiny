@@ -7,6 +7,8 @@
 
 Everyone enjoys watching movies! Don't know what to watch next? Use our app, **Infinity♾Watch**, where we will supply you with recommendations and movie analytics! Want to explore a huge dataset of movies? Explore our visualizations using **Infinity♾Watch**!
 
+**Infinity♾Watch**'s mission is to provide analytics and recommendations about the movies in our dataset. 
+
 Our team felt that making a web app using Shiny was the one of most useful applications from this course. We envisioned a Movie Recommender App that has multiple tabs which also provides Movie recommendations while also providing data visualizations of the dataset. This project reflects the meaningful learning and collaboration in COMP/STAT 112. 
 
 ## Data 📊
@@ -42,8 +44,9 @@ The **main features** of the app includes:
 2. ***Tab 2***: Recommend by Genre
 - In this tab, the user is able to chose Genre(s) and the posters of top 4 movies in the chosen Genre(s) will be generated! (The recommendation will be based on popularity)
 
+Upon utilizing our app, we hope that our users are able to gain/observe insightful information about the movies dataset while be given good recommendations of what to watch next!
+
 ## Acknowledgements 🧠
 
 The creators of the app would like to acknowledge Professor Lauren Milne for the insights, guidance, and feedback througout the app building process. 
-
 
