@@ -3,6 +3,8 @@ library(tidyverse)
 library(ggplot2)
 library(shinyBS)
 library(rsconnect)
+library(lubridate)
+
 movie <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/datasetnew/movies_with_lang.csv")
 
 
@@ -32,12 +34,26 @@ ui <- fluidPage(
                                    label = "Genre",
                                    choices = unique(movies_by_genre$Genre1), 
                                    multiple = TRUE), 
-                       submitButton(text = "Create my plot!", icon = NULL, width = NULL), 
-                       plotOutput(outputId = "movieplot")
-                       ), 
-
-
-              tabPanel("Search By Genre", "Movie Recommender (Based on Popularity)", 
+                       submitButton(text = "Create my plot!", 
+                                    icon = NULL, width = NULL), 
+                       plotOutput(outputId = "movieplot"),
+                       selectInput(inputId = "language", 
+                                   label = "Language Choice", 
+                                   choices = unique(movies_by_genre$language),
+                                   multiple = TRUE), 
+                       sliderInput(inputId = "years",
+                                   label = "Date Range",
+                                   min = as.Date("1902-10-10"),
+                                   max = as.Date("2024-10-10"),
+                                   value = c(as.Date("1902-10-10"), 
+                                             as.Date("2024-10-10")),
+                                   sep = ""),
+                       submitButton(text = "Create my plot!", 
+                                    icon = NULL, width = NULL), 
+                       plotOutput(outputId = "languageplot")),
+                       
+              tabPanel("Search By Genre", 
+                       "Movie Recommender (Based on Popularity)", 
                        selectInput(inputId = "Genre", 
                                    label = "Genre:",  
                                    unique(movies_by_genre$Genre1), 
@@ -50,9 +66,13 @@ ui <- fluidPage(
                        #tipify(htmlOutput("picture", inline = TRUE), "Hello again! This is a click-able pop-up", placement="bottom", trigger = "click")
                        # bsTooltip(id = "someInput", title = "This is an input", 
                        #                                                 placement = "left", trigger = "hover")
-                       tipify(htmlOutput("picture", inline = TRUE), textOutput("txt1"), placement="bottom", trigger = "hover"),
-                       tipify(htmlOutput("picture2", inline = TRUE),"txt2", placement="bottom", trigger = "hover"),
-                       tipify(htmlOutput("picture3", inline = TRUE), "txt3", placement="right", trigger = "hover")
+                       tipify(htmlOutput("picture", inline = TRUE), 
+                              textOutput("txt1"), placement="bottom", 
+                              trigger = "hover"),
+                       tipify(htmlOutput("picture2", inline = TRUE),"txt2", 
+                              placement="bottom", trigger = "hover"),
+                       tipify(htmlOutput("picture3", inline = TRUE), "txt3", 
+                              placement="right", trigger = "hover")
               )))
 
 
@@ -70,6 +90,25 @@ server <- function(input, output){
       labs(title = "Top Movies in Selected Language and Genre", y = "", caption = "Popularity metric is computed by TMDB developers based on the number of views per day, \nvotes per day, number of users marked it as 'favorite' and 'watchlist' for the data, release date and more other metrics") +
       theme(plot.caption = element_text(hjust = 0.5))
   )
+  
+  output$languageplot <- renderPlot(
+    if(length(c(input$language) > 0)){
+      movie %>% 
+        mutate(year = lubridate::year(Release_Date)) %>% 
+        group_by(year) %>% 
+        filter(language %in% input$language) %>% 
+        mutate(count = n()) %>% 
+        ungroup() %>% 
+        ggplot(aes(x = Release_Date, y = count, color = language)) + 
+        scale_x_date(limits = c(input$years)) + 
+        facet_wrap(.~language) +
+        geom_line() + 
+        labs(x = "Release Date", y = "",
+             title = "Release Dates of Movies in Selected Languages") + 
+        theme_minimal()
+    }
+  )
+  
   output$picture <- renderText({
 
    link <- movies_by_genre %>%
