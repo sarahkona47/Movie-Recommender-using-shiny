@@ -1,6 +1,6 @@
 # **Infinity♾Watch** (Movie Recommender App)
 
-**Creators**: Kenny Nhan, Alex Shevchenko, Sarah Choi, Marshall Roll
+**Creators👨‍👩‍👦‍👦**: Kenny Nhan, Alex Shevchenko, Sarah Choi, Marshall Roll
 
 ## Introduction & Background 
 (An introduction that motivates & outlines a clear, specific set of research questions. Also, provide some background on your topic)
