@@ -54,27 +54,6 @@ ui <- fluidPage(
                        tipify(htmlOutput("picture2", inline = TRUE),"txt2", placement="bottom", trigger = "hover"),
                        tipify(htmlOutput("picture3", inline = TRUE), "txt3", placement="right", trigger = "hover")
               )))
-        
-                     
-  
-
-
-
-# sliderInput(inputId = "date", 
-#             label = "Release Date Range",
-#             min = as.Date(min(movie$Release_Date)), 
-#             max = as.Date(max(movie$Release_Date)), 
-#             value = c(as.Date(min(movie$Release_Date)), as.Date(max(movie$Release_Date)))),
-# textInput("name", 
-#           "Name", 
-#           value = "", 
-#           placeholder = "Lisa"),
-# selectInput("sex", 
-#             "Sex", 
-#             choices = list(Female = "F", Male = "M")),
-# submitButton(text = "Create my plot!")
-
-
 
 
 server <- function(input, output){
@@ -136,7 +115,6 @@ server <- function(input, output){
     txt = link$Overview
     c(nth(txt,1))
   })
-   
    
 }                       
 
