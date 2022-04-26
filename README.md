@@ -25,7 +25,7 @@ Variabls in our dataset:
 - Genre: Categories the movie it can be classified as.
 - Poster_Url: Url of the movie poster.
 
-Additional information regarding the dataset can be found from the original source. (https://www.kaggle.com/datasets/disham993/9000-movies-dataset)
+If you would like to explore or gain ddditional information regarding the dataset, you can visit dataset's original source. (Link: https://www.kaggle.com/datasets/disham993/9000-movies-dataset)
 
 ## Navigating the App
 (This is the bulk of the report which either has a presentation of the group’s key findings and take-aways or gives the detail of how someone would interact and what people should take away from the shiny app. If you choose to do a shiny app, be sure to include a link to the shinyapps.io site.)
