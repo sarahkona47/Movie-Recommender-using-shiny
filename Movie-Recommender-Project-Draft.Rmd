@@ -28,6 +28,7 @@ movies <- merge(movies, language, by.x = "Original_Language",
       by.y = "alpha2")
 
 names(movies)[names(movies) == "English"] <- "language"
+write_csv(movies, "movies.csv")
 ```
 
 
@@ -97,11 +98,12 @@ movies %>%
 movies %>% 
   mutate(year = lubridate::year(Release_Date)) %>% 
   group_by(year) %>% 
+  filter(language %in% c("English", "Korean")) %>% 
   mutate(count = n()) %>% 
   ungroup() %>% 
-  ggplot(aes(y = Release_Date)) + 
-  geom_density() + 
-  coord_flip() + 
+  ggplot(aes(y = count, x = Release_Date, color = language)) + 
+  facet_wrap(.~language) +
+  geom_line() + 
   theme_minimal()
 ```
 
