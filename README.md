@@ -1,4 +1,4 @@
-# **Infinity♾Watch** (Movie Recommender App)
+# **Infinity♾Watch**
 
 **Creators**: Kenny Nhan 👦🏻, Alex Shevchenko 👱🏼‍♂️, Sarah Choi 👩🏻, Marshall Roll 👱🏻‍♂️
 
