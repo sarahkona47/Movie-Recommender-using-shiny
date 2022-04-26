@@ -1,6 +1,6 @@
 # **Infinity♾Watch** (Movie Recommender App)
 
-**Creators 👨‍👩‍👦‍👦**: Kenny Nhan, Alex Shevchenko, Sarah Choi, Marshall Roll
+**Creators**: Kenny Nhan 👦🏻, Alex Shevchenko 👱🏼‍♂️, Sarah Choi 👩🏻, Marshall Roll 👱🏻‍♂️
 
 ## Introduction & Background 🖥
 (An introduction that motivates & outlines a clear, specific set of research questions. Also, provide some background on your topic)
@@ -42,8 +42,8 @@ The **main features** of the app includes:
 2. ***Tab 2***: Recommend by Genre
 - In this tab, the user is able to chose Genre(s) and the posters of top 4 movies in the chosen Genre(s) will be generated! (The recommendation will be based on popularity)
 
-## Acknowledgements
+## Acknowledgements 🧠
 
-The creators of the app would like to acknowledge Professor Lauren Milne 🧠 for the insights, guidance, and feedback througout the app building process. 
+The creators of the app would like to acknowledge Professor Lauren Milne for the insights, guidance, and feedback througout the app building process. 
 
 
