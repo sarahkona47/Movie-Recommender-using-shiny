@@ -14,6 +14,10 @@ movies_by_genre <- movie %>%
                            "Genre7"), 
            sep = ",")
 
+genre_df <- data.frame(genre_name = genre_list)
+genre_df$genre_count <- replicate(nrow(genre_df), 0)
+
+
 ui <- fluidPage(
   tabsetPanel(tabPanel("Popularity", "Explore the Movies ",
                        selectInput(inputId = "lang", 
@@ -50,7 +54,14 @@ ui <- fluidPage(
                                    sep = ""),
                        submitButton(text = "Create my plot!", 
                                     icon = NULL, width = NULL), 
-                       plotOutput(outputId = "languageplot")),
+                       plotOutput(outputId = "languageplot"),
+                       selectInput(inputId = "langSelect",
+                                   label = "Language",
+                                   choices = unique(movies_by_genre$language)),
+                       submitButton(text = "Create my plot!", 
+                                    icon = NULL, width = NULL), 
+                       plotOutput(outputId = "genreplot"),
+                    ),
                        
               tabPanel("Search By Genre", 
                        "Movie Recommender (Based on Popularity)", 
@@ -74,7 +85,6 @@ ui <- fluidPage(
                        tipify(htmlOutput("picture3", inline = TRUE), "txt3", 
                               placement="right", trigger = "hover")
               )))
-
 
 server <- function(input, output){
 
@@ -108,6 +118,28 @@ server <- function(input, output){
         theme_minimal()
     }
   )
+  
+  # output$genrePlot <- renderPlot(
+  #   movies_language <- movies %>% 
+  #     filter(language == input$langSelect),
+  #   
+  #   for(x in movies_language$Genre) { 
+  #     for(gen in 1:nrow(genre_df)) {
+  #       row <- genre_df[gen,]
+  #       ifelse(str_detect(x, row$genre_name),
+  #              row$genre_count <- row$genre_count + 1,
+  #              row$genre_count <- row$genre_count + 0)
+  #       genre_df[gen, ] <- row
+  #     }
+  #   }
+  #   
+  #   genre_df %>% 
+  #     ggplot(aes(x = genre_count, 
+  #                y = fct_reorder(genre_name, genre_count))) +
+  #     geom_col(fill = "lightblue") +
+  #     labs(x = "Total Number of Movies", y = "", 
+  #          title = "Number of Movies in Each Genre for Selected Language")
+  # )
   
   output$picture <- renderText({
 
