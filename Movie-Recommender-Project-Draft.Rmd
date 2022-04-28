@@ -16,18 +16,18 @@ library(ggplot2)
 
 ```{r, include = FALSE}
 
-movies <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/2992296bc6ebffdebe766acc1b4704edbc557478/mymoviedb.csv")
+movies <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/datasetnew/movies_with_lang.csv")
 
-language <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/datasetnew/movies_with_lang.csv")
+# language <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/datasetnew/movies_with_lang.csv")
 
 ```
 
 ```{r language-joining, include = FALSE}
-movies <- merge(movies, language, by.x = "Original_Language", 
-      by.y = "alpha2")
-
-names(movies)[names(movies) == "English"] <- "language"
-write_csv(movies, "movies.csv")
+# movies <- merge(movies, language, by.x = "Original_Language", 
+#       by.y = "alpha2")
+# 
+# names(movies)[names(movies) == "English"] <- "language"
+# write_csv(movies, "movies.csv")
 ```
 
 
@@ -95,13 +95,13 @@ movies %>%
 ```{r date-distribution}
 #this graph is kinda useless
 movies %>% 
+  filter(language %in% c("Korean", "English")) %>%
   mutate(year = lubridate::year(Release_Date)) %>% 
-  group_by(year) %>% 
-  filter(language %in% c("English", "Korean")) %>% 
+  group_by(year, language) %>% 
   mutate(count = n()) %>% 
   ungroup() %>% 
   ggplot(aes(y = count, x = Release_Date, color = language)) + 
-  facet_wrap(.~language) +
+  facet_wrap(vars(language)) +
   geom_line() + 
   theme_minimal()
 ```

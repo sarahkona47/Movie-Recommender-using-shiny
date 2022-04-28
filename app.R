@@ -106,7 +106,7 @@ server <- function(input, output){
     if(length(c(input$language) > 0)){
       movie %>% 
         mutate(year = lubridate::year(Release_Date)) %>% 
-        group_by(year) %>% 
+        group_by(year, language) %>% 
         filter(language %in% input$language) %>% 
         mutate(count = n()) %>% 
         ungroup() %>% 
