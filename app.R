@@ -90,9 +90,15 @@ server <- function(input, output){
       arrange(desc(Popularity)) %>%
       select(Title, Popularity) %>%
       top_n(20) %>%
-      ggplot(aes(x = Popularity, y = fct_reorder(Title, Popularity))) +
-      geom_col(fill = "lightblue") +
-      labs(title = "Top Movies in Selected Language and Genre", y = "", caption = "Popularity metric is computed by TMDB developers based on the number of views per day, \nvotes per day, number of users marked it as 'favorite' and 'watchlist' for the data, release date and more other metrics") +
+      ggplot(aes(x = Popularity, 
+                 y = fct_reorder(Title, Popularity),
+                 fill = Popularity)) +
+      scale_fill_gradient(low = "#8cfbff",
+                          high = "#095282") +
+      geom_col() +
+      labs(title = "Top Movies in Selected Language and Genre",
+           y = "", caption = "Popularity metric is computed by TMDB developers based on the number of views per day, \nvotes per day, number of users marked it as 'favorite' and 'watchlist' for the data, release date and more other metrics") +
+      guides(fill = FALSE) +
       theme(plot.caption = element_text(hjust = 0.5))
   )
   
@@ -111,6 +117,25 @@ server <- function(input, output){
         labs(x = "Release Date", y = "",
              title = "Release Dates of Movies in Selected Languages")
     }
+  )
+  
+  output$genreplot <- renderPlot(
+    movies_by_genre %>%  
+      pivot_longer(Genre1:Genre7, names_to = "genre_num", values_to = "genre") %>% 
+      filter(language %in% c(input$langSelect)) %>% 
+      mutate(genre_str = str_squish(genre)) %>% 
+      group_by(genre_str) %>% 
+      mutate(count = n()) %>%
+      na.omit() %>% 
+      ggplot(aes(x = count,
+                 y = fct_reorder(genre_str, count),
+                 fill = count)) +
+      scale_fill_gradient(low = "#8cffa5",
+                           high = "#01420f") +
+      geom_col() +
+      guides(fill = FALSE) +
+      labs(x = "Total Number of Movies", y = "",
+           title = "Number of Movies in Each Genre for Selected Language")
   )
   
   output$picture <- renderText({
