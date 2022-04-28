@@ -37,7 +37,7 @@ If you would like to explore or gain ddditional information regarding the datase
 The **main features** of the app includes:
 
 1. ***Tab 1***: Analytics 
-- In this tab, you are able to explore the dataset and create interactive plots. The user is able to input parameters (Language, Genre, etc). 
+- In this tab, you are able to explore the dataset and create interactive plots. The user is able to input parameters (Language, Genre, & Date). 
   - The first graph is a horizontal bar plot that displays the top movies depending on the user's input for Language and Genre(s). 
   - The second graph is a line graph that displays the amount of movies produced per year depending on the user's input for Language(s). 
   - The third graph is a point plot that displays the total number of movies per Genre depending on the user's input for a Language.
