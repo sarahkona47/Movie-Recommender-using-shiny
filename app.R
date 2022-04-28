@@ -79,9 +79,10 @@ ui <- fluidPage(
                        #tipify(htmlOutput("picture", inline = TRUE), "Hello again! This is a click-able pop-up", placement="bottom", trigger = "click")
                        # bsTooltip(id = "someInput", title = "This is an input", 
                        #                                                 placement = "left", trigger = "hover")
-                       tipify(htmlOutput("picture", inline = TRUE), 
-                              textOutput("txt1"), placement="bottom", 
-                              trigger = "hover"),
+                       htmlOutput("picture", inline = TRUE),
+                       # tipify(htmlOutput("picture", inline = TRUE), 
+                       #        title = textOutput("txt1"), placement="bottom", 
+                       #        trigger = "hover"),
                        tipify(htmlOutput("picture2", inline = TRUE),"txt2", 
                               placement="bottom", trigger = "hover"),
                        tipify(htmlOutput("picture3", inline = TRUE), "txt3", 
@@ -133,7 +134,7 @@ server <- function(input, output){
 
    src = link$Poster_Url
    #c('<img src="',nth(src,1),'" width = 300, height = 400> <img src="',nth(src,2),'" width = 300, height = 400> <img src="',nth(src,3),'" width = 300, height = 400> <img src="',nth(src,4),'" width = 300, height = 400>')})
-   c('<img src="',nth(src,1),'" width = 300, height = 400>')})
+   c('<img src="',nth(src,1),'" width = 300, height = 400, title = "hello world">')})
   # addTooltip(session, id = "someInput", title = "This is an input.",
   #            placement = "left", trigger = "hover")})
   output$picture2 <- renderText({
@@ -159,13 +160,14 @@ server <- function(input, output){
     c('<img src="',nth(src,3),'" width = 300, height = 400>')}) 
   
   output$txt1  <- renderText({
-    link <- movies_by_genre %>%
-      filter(Genre1 %in% input$Genre) %>%
-      arrange(desc(Popularity)) %>%
-      select(Poster_Url, Popularity) %>%
-      top_n(4)
-    txt = link$Overview
-    c(nth(txt,1))
+    # link <- movies_by_genre %>%
+    #   filter(Genre1 %in% input$Genre) %>%
+    #   arrange(desc(Popularity)) %>%
+    #   select(Poster_Url, Popularity) %>%
+    #   top_n(4)
+    # txt = link$Overview
+    # c(nth(txt,1))
+    c('hello world')
   })
    
 }                       
