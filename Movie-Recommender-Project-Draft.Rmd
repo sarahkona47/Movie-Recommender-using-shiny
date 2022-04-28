@@ -19,7 +19,10 @@ library(ggplot2)
 movies <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/datasetnew/movies_with_lang.csv")
 
 # language <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/datasetnew/movies_with_lang.csv")
-
+movies <- movies %>% 
+  group_by(language) %>% 
+  mutate(count = n()) %>% 
+  filter(count >= 100)
 ```
 
 ```{r language-joining, include = FALSE}

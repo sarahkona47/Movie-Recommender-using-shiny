@@ -7,6 +7,10 @@ library(lubridate)
 
 movie <- read_csv("https://raw.githubusercontent.com/sarahkona47/Movie-Recommender-using-shiny/datasetnew/movies_with_lang.csv")
 
+movie <- movie %>% 
+  group_by(language) %>% 
+  mutate(count = n()) %>% 
+  filter(count >= 100)
 
 movies_by_genre <- movie %>%
   separate(Genre, into = c("Genre1", "Genre2", "Genre3",
