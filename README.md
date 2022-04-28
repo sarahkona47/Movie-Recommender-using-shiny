@@ -16,7 +16,7 @@ Our team felt that making a web app using Shiny was the one of most useful appli
 
 Our app is built upon a movie dataset with 9000+ movies. This is a publicly accessible dataset and was retrieved from Kaggle.com. 
 
-Variabls in our dataset:
+Variables in our dataset:
 - Release_Date: Date when the movie was released.
 - Title: Name of the movie.
 - Overview: Brief summary of the movie.
@@ -38,8 +38,9 @@ The **main features** of the app includes:
 
 1. ***Tab 1***: Analytics 
 - In this tab, you are able to explore the dataset and create interactive plots. The user is able to input parameters (Language, Genre, etc). 
-- The first graph is a horizontal bar plot that displays the top movies depending on the user's input for Language and Genre(s). 
-- The second graph is a line graph that displays the amount of movies produced per year depending user's input for Language(s). 
+  - The first graph is a horizontal bar plot that displays the top movies depending on the user's input for Language and Genre(s). 
+  - The second graph is a line graph that displays the amount of movies produced per year depending on the user's input for Language(s). 
+  - The third graph is a point plot that displays the total number of movies per Genre depending on the user's input for a Language.
 
 2. ***Tab 2***: Recommend by Genre
 - In this tab, the user is able to chose Genre(s) and the posters of top 4 movies in the chosen Genre(s) will be generated! (The recommendation will be based on popularity)
