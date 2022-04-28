@@ -75,10 +75,6 @@ ui <- fluidPage(
                                     icon = NULL, 
                                     width = NULL),
 
-                       #img(src = "https://image.tmdb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg", height = 300, width = 250),
-                       #tipify(htmlOutput("picture", inline = TRUE), "Hello again! This is a click-able pop-up", placement="bottom", trigger = "click")
-                       # bsTooltip(id = "someInput", title = "This is an input", 
-                       #                                                 placement = "left", trigger = "hover")
                        htmlOutput("picture", inline = TRUE),
        
                        htmlOutput("picture2", inline = TRUE),
