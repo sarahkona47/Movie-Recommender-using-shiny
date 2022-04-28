@@ -46,7 +46,7 @@ The **main features** of the app includes:
 - In this tab, the user is able to chose Genre(s) and the posters and summaries of the top 4 movies in the chosen Genre(s) will be generated! (The recommendation will be based on popularity)
   - To see the movie summary, please hold your mouse on over the poster for at least 2 seconds. 
 
-Upon utilizing our app, we hope that our users are able to gain and observe insightful information about the movies dataset while being suggested with good recommendations of what to watch next! "Let's **Infinity♾Watch**!"
+Upon utilizing our app, we hope that our users are able to gain and observe insightful information about the movies dataset while being suggested with good recommendations of what to watch next! Never let your movie-marathon end with **Infinity♾Watch**!
 
 ## 🧠 Acknowledgements 
 
