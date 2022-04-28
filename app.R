@@ -116,8 +116,7 @@ server <- function(input, output){
         facet_wrap(.~language) +
         geom_line() + 
         labs(x = "Release Date", y = "",
-             title = "Release Dates of Movies in Selected Languages") + 
-        theme_minimal()
+             title = "Release Dates of Movies in Selected Languages")
     }
   )
   
