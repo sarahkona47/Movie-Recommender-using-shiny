@@ -1,0 +1,14 @@
+name: Movie-Recommender-using-shiny
+title: Movie-Recommender-using-shiny
+username:
+account: sarahkona47
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6194654
+bundleId: 5848039
+url: https://sarahkona47.shinyapps.io/Movie-Recommender-using-shiny/
+when: 1651171258.36778
+lastSyncTime: 1651171258.3678
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Movie-Recommender-Project-Draft.Rmd|Top20_by_pop.Rmd
