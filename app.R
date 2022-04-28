@@ -80,13 +80,12 @@ ui <- fluidPage(
                        # bsTooltip(id = "someInput", title = "This is an input", 
                        #                                                 placement = "left", trigger = "hover")
                        htmlOutput("picture", inline = TRUE),
-                       # tipify(htmlOutput("picture", inline = TRUE), 
-                       #        title = textOutput("txt1"), placement="bottom", 
-                       #        trigger = "hover"),
-                       tipify(htmlOutput("picture2", inline = TRUE),"txt2", 
-                              placement="bottom", trigger = "hover"),
-                       tipify(htmlOutput("picture3", inline = TRUE), "txt3", 
-                              placement="right", trigger = "hover")
+       
+                       htmlOutput("picture2", inline = TRUE),
+      
+                       htmlOutput("picture3", inline = TRUE),
+                       htmlOutput("picture4", inline = TRUE)
+                
               )))
 
 server <- function(input, output){
@@ -132,8 +131,9 @@ server <- function(input, output){
       slice_max(n = 4, order_by = Popularity)
 
    src = link$Poster_Url
+   word = link$Overview
    #c('<img src="',nth(src,1),'" width = 300, height = 400> <img src="',nth(src,2),'" width = 300, height = 400> <img src="',nth(src,3),'" width = 300, height = 400> <img src="',nth(src,4),'" width = 300, height = 400>')})
-   c('<img src="',nth(src,1),'" width = 300, height = 400, title = "hello world">')})
+   c('<img src="',nth(src,1),'" width = 300, height = 400, title = "',nth(word,1),'">')})
   # addTooltip(session, id = "someInput", title = "This is an input.",
   #            placement = "left", trigger = "hover")})
   output$picture2 <- renderText({
@@ -141,33 +141,39 @@ server <- function(input, output){
     link <- movies_by_genre %>%
       filter(Genre1 %in% input$Genre) %>%
       arrange(desc(Popularity)) %>%
-      select(Poster_Url, Popularity) %>%
-      top_n(4)
+      select(Poster_Url, Overview, Popularity) %>%
+      slice_max(n = 4, order_by = Popularity)
     
     src = link$Poster_Url
-    c('<img src="',nth(src,2),'" width = 300, height = 400>')}) 
+    word = link$Overview
+    c('<img src="',nth(src,2),'" width = 300, height = 400, title = "',nth(word,2),'">')}) 
   
   output$picture3 <- renderText({
     
     link <- movies_by_genre %>%
       filter(Genre1 %in% input$Genre) %>%
       arrange(desc(Popularity)) %>%
-      select(Poster_Url, Popularity) %>%
-      top_n(4)
+      select(Poster_Url, Overview, Popularity) %>%
+      slice_max(n = 4, order_by = Popularity)
     
     src = link$Poster_Url
-    c('<img src="',nth(src,3),'" width = 300, height = 400>')}) 
+    word = link$Overview
+    c('<img src="',nth(src,3),'" width = 300, height = 400, title = "',nth(word,3),'">')}) 
   
-  output$txt1  <- renderText({
-    # link <- movies_by_genre %>%
-    #   filter(Genre1 %in% input$Genre) %>%
-    #   arrange(desc(Popularity)) %>%
-    #   select(Poster_Url, Popularity) %>%
-    #   top_n(4)
-    # txt = link$Overview
-    # c(nth(txt,1))
-    c('hello world')
-  })
+  
+  output$picture4 <- renderText({
+    
+    link <- movies_by_genre %>%
+      filter(Genre1 %in% input$Genre) %>%
+      arrange(desc(Popularity)) %>%
+      select(Poster_Url, Overview, Popularity) %>%
+      slice_max(n = 4, order_by = Popularity)
+    
+    src = link$Poster_Url
+    word = link$Overview
+    c('<img src="',nth(src,4),'" width = 300, height = 400, title = "',nth(word,4),'">')}) 
+  
+
    
 }                       
 
