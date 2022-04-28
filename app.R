@@ -14,6 +14,9 @@ movies_by_genre <- movie %>%
                            "Genre7"), 
            sep = ",")
 
+genre_list <- movies_by_genre$Genre1 %>% 
+  unique()
+
 genre_df <- data.frame(genre_name = genre_list)
 genre_df$genre_count <- replicate(nrow(genre_df), 0)
 
@@ -50,8 +53,7 @@ ui <- fluidPage(
                                    min = as.Date("1902-10-10"),
                                    max = as.Date("2024-10-10"),
                                    value = c(as.Date("1902-10-10"), 
-                                             as.Date("2024-10-10")),
-                                   sep = ""),
+                                             as.Date("2024-10-10"))),
                        submitButton(text = "Create my plot!", 
                                     icon = NULL, width = NULL), 
                        plotOutput(outputId = "languageplot"),
@@ -119,27 +121,7 @@ server <- function(input, output){
     }
   )
   
-  # output$genrePlot <- renderPlot(
-  #   movies_language <- movies %>% 
-  #     filter(language == input$langSelect),
-  #   
-  #   for(x in movies_language$Genre) { 
-  #     for(gen in 1:nrow(genre_df)) {
-  #       row <- genre_df[gen,]
-  #       ifelse(str_detect(x, row$genre_name),
-  #              row$genre_count <- row$genre_count + 1,
-  #              row$genre_count <- row$genre_count + 0)
-  #       genre_df[gen, ] <- row
-  #     }
-  #   }
-  #   
-  #   genre_df %>% 
-  #     ggplot(aes(x = genre_count, 
-  #                y = fct_reorder(genre_name, genre_count))) +
-  #     geom_col(fill = "lightblue") +
-  #     labs(x = "Total Number of Movies", y = "", 
-  #          title = "Number of Movies in Each Genre for Selected Language")
-  # )
+  
   
   output$picture <- renderText({
 
