@@ -74,11 +74,8 @@ ui <- fluidPage(
                        submitButton(text = "Search", 
                                     icon = NULL, 
                                     width = NULL),
-
                        htmlOutput("picture", inline = TRUE),
-       
                        htmlOutput("picture2", inline = TRUE),
-      
                        htmlOutput("picture3", inline = TRUE),
                        htmlOutput("picture4", inline = TRUE)
                 
@@ -116,8 +113,6 @@ server <- function(input, output){
     }
   )
   
-  
-  
   output$picture <- renderText({
 
    link <- movies_by_genre %>%
@@ -128,10 +123,8 @@ server <- function(input, output){
 
    src = link$Poster_Url
    word = link$Overview
-   #c('<img src="',nth(src,1),'" width = 300, height = 400> <img src="',nth(src,2),'" width = 300, height = 400> <img src="',nth(src,3),'" width = 300, height = 400> <img src="',nth(src,4),'" width = 300, height = 400>')})
    c('<img src="',nth(src,1),'" width = 300, height = 400, title = "',nth(word,1),'">')})
-  # addTooltip(session, id = "someInput", title = "This is an input.",
-  #            placement = "left", trigger = "hover")})
+
   output$picture2 <- renderText({
     
     link <- movies_by_genre %>%
@@ -168,9 +161,6 @@ server <- function(input, output){
     src = link$Poster_Url
     word = link$Overview
     c('<img src="',nth(src,4),'" width = 300, height = 400, title = "',nth(word,4),'">')}) 
-  
-
-   
 }                       
 
 shinyApp(ui = ui, server = server)
