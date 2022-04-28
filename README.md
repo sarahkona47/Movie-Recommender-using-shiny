@@ -43,7 +43,8 @@ The **main features** of the app includes:
   - The third graph is a point plot that displays the total number of movies per Genre depending on the user's input for a Language.
 
 2. ***Tab 2***: Recommend by Genre
-- In this tab, the user is able to chose Genre(s) and the posters of top 4 movies in the chosen Genre(s) will be generated! (The recommendation will be based on popularity)
+- In this tab, the user is able to chose Genre(s) and the posters and summaries of the top 4 movies in the chosen Genre(s) will be generated! (The recommendation will be based on popularity)
+  - To see the movie summary, please hold your mouse on top of the poster for at least 2 seconds. 
 
 Upon utilizing our app, we hope that our users are able to gain/observe insightful information about the movies dataset while be given good recommendations of what to watch next!
 
