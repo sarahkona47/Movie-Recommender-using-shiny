@@ -27,40 +27,77 @@ genre_df$genre_count <- replicate(nrow(genre_df), 0)
 
 
 ui <- fluidPage(
-  tabsetPanel(tabPanel("Popularity", "Explore the Movies ",
-                       selectInput(inputId = "lang", 
-                                   label = "Language Choice", 
-                                   choices = unique(movies_by_genre$language)), 
-                       selectInput(inputId = "genre",
-                                   label = "Genre",
-                                   choices = unique(movies_by_genre$Genre1), 
-                                   multiple = TRUE), 
-                       submitButton(text = "Create my plot!", 
-                                    icon = NULL, width = NULL), 
-                       plotOutput(outputId = "movieplot"),
-                       selectInput(inputId = "language", 
-                                   label = "Language Choice", 
-                                   choices = unique(movies_by_genre$language),
-                                   multiple = TRUE), 
-                       sliderInput(inputId = "years",
-                                   label = "Date Range",
-                                   min = as.Date("1902-10-10"),
-                                   max = as.Date("2024-10-10"),
-                                   value = c(as.Date("1902-10-10"), 
-                                             as.Date("2024-10-10"))),
-                       submitButton(text = "Create my plot!", 
-                                    icon = NULL, width = NULL), 
-                       plotOutput(outputId = "languageplot"),
-                       selectInput(inputId = "langSelect",
-                                   label = "Language",
-                                   choices = unique(movies_by_genre$language)),
-                       submitButton(text = "Create my plot!", 
-                                    icon = NULL, width = NULL), 
-                       plotOutput(outputId = "genreplot"),
+  navbarPage(strong("Infinity Watch"),
+             tabPanel("Analytics", h1("Explore the Movies",
+                                      align = "center",
+                                      style = "color:blue;font-weight:bold"),
+                      h4("Movie Popularity", 
+                         align = "center",
+                         style = "color:blue;font-weight:bold"),
+                      sidebarLayout(
+                        sidebarPanel(
+                          selectInput(inputId = "lang", 
+                                      label = "Language Choice", 
+                                      choices = unique(movies_by_genre$language)), 
+                          selectInput(inputId = "genre",
+                                      label = "Genre",
+                                      choices = unique(movies_by_genre$Genre1), 
+                                      multiple = TRUE), 
+                          submitButton(text = "Create my plot!", 
+                                       icon = NULL, width = NULL), 
+                        ),
+                        mainPanel(
+                          plotOutput(outputId = "movieplot"),
+                        )
+                      ),
+                      br(),
+                      br(),
+                      h4("Movies over Time", 
+                         align = "center",
+                         style = "color:blue;font-weight:bold"),
+                      sidebarLayout(
+                        sidebarPanel(
+                          selectInput(inputId = "language", 
+                                      label = "Language Choice", 
+                                      choices = unique(movies_by_genre$language),
+                                      multiple = TRUE), 
+                          sliderInput(inputId = "years",
+                                      label = "Date Range",
+                                      min = as.Date("1902-10-10"),
+                                      max = as.Date("2024-10-10"),
+                                      value = c(as.Date("1902-10-10"), 
+                                                as.Date("2024-10-10"))),
+                          submitButton(text = "Create my plot!", 
+                                       icon = NULL, width = NULL)
+                        ),
+                        mainPanel(
+                          plotOutput(outputId = "languageplot")
+                        )
+                      ),
+                      br(),
+                      br(),
+                      sidebarLayout(
+                        sidebarPanel(
+                          h4("Genre Breakdown", 
+                             align = "center",
+                             style = "color:blue;font-weight:bold"),
+                          selectInput(inputId = "langSelect",
+                                      label = "Language",
+                                      choices = unique(movies_by_genre$language)),
+                          submitButton(text = "Create my plot!", 
+                                       icon = NULL, width = NULL)
+                        ),
+                        mainPanel(plotOutput(outputId = "genreplot"))
+                      ),
                     ),
                        
-              tabPanel("Search By Genre", 
-                       "Movie Recommender (Based on Popularity)", 
+              tabPanel("Recommender", 
+                       h1("Movie Recommender", 
+                          align = "center",
+                          style = "color:green;font-weight:bold"),
+                       h5("Based on Popularity",
+                          align = "center",
+                          style = "color:green"),
                        selectInput(inputId = "Genre", 
                                    label = "Genre:",  
                                    unique(movies_by_genre$Genre1), 
@@ -91,7 +128,7 @@ server <- function(input, output){
                           high = "#095282") +
       geom_col() +
       labs(title = "Top Movies in Selected Language and Genre",
-           y = "", caption = "Popularity metric is computed by TMDB developers based on the number of views per day, \nvotes per day, number of users marked it as 'favorite' and 'watchlist' for the data, release date and more other metrics") +
+           y = "", caption = "Popularity metric is computed by TMDB developers based on the number of views per day, votes per day, number of users marked it as 'favorite' and 'watchlist' for the data, release date and more other metrics") +
       guides(fill = FALSE) +
       theme(plot.caption = element_text(hjust = 0.5))
   )
