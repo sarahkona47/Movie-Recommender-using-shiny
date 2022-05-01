@@ -101,7 +101,7 @@ ui <- fluidPage(
                        selectInput(inputId = "Genre", 
                                    label = "Genre:",  
                                    unique(movies_by_genre$Genre1), 
-                                   multiple = TRUE ),
+                                   multiple = TRUE),
                        submitButton(text = "Search", 
                                     icon = NULL, 
                                     width = NULL),
