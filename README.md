@@ -32,7 +32,7 @@ If you would like to explore or gain ddditional information regarding the datase
 ## 👩🏻‍💻 Navigating the App 
 (This is the bulk of the report which either has a presentation of the group’s key findings and take-aways or gives the detail of how someone would interact and what people should take away from the shiny app. If you choose to do a shiny app, be sure to include a link to the shinyapps.io site.)
 
-**Infinity♾Watch** is very easy to navigate! Anyone is able to access **Infinity♾Watch** and its features using the following link:(web application)
+**Infinity♾Watch** is very easy to navigate! Anyone is able to access **Infinity♾Watch** and its features using the following link: **https://sarahkona47.shinyapps.io/Movie-Recommender-using-shiny/**
 
 The **main features** of the app includes:
 
