@@ -30,7 +30,7 @@ ui <- fluidPage(
   navbarPage(strong("Infinity Watch"),
              tabPanel("Analytics", h1("Explore the Movies",
                                       align = "center",
-                                      style = "color:blue;font-weight:bold"),
+                                      style = "font-weight:bold"),
                       h4("Movie Popularity", 
                          align = "center",
                          style = "color:blue;font-weight:bold"),
@@ -76,11 +76,11 @@ ui <- fluidPage(
                       ),
                       br(),
                       br(),
+                      h4("Genre Breakdown", 
+                         align = "center",
+                         style = "color:blue;font-weight:bold"),
                       sidebarLayout(
                         sidebarPanel(
-                          h4("Genre Breakdown", 
-                             align = "center",
-                             style = "color:blue;font-weight:bold"),
                           selectInput(inputId = "langSelect",
                                       label = "Language",
                                       choices = unique(movies_by_genre$language)),
