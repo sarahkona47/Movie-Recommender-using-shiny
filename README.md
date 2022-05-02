@@ -1,6 +1,6 @@
 # **Infinity♾Watch**
 
-**Creators**: Kenny Nhan 👦🏻, Alex Shevchenko 👱🏼‍♂️, Sarah Choi 👩🏻, Marshall Roll 👱🏻‍♂️
+**Creators**: Kenny Nhan, Alex Shevchenko, Sarah Choi, Marshall Roll
 
 ## 🖥 Introduction & Background 
 
