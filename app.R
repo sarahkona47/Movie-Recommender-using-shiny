@@ -127,7 +127,7 @@ server <- function(input, output){
                           high = "#095282") +
       geom_col() +
       labs(title = "Top Movies in Selected Language and Genre",
-           y = "", caption = "Popularity metric is computed by TMDB developers based on the number of views per day, votes per day, number of users marked it as 'favorite' and 'watchlist' for the data, release date and more other metrics") +
+           y = "", caption = "Popularity metric is computed by TMDB developers based on the number of views per day, votes per day,\n number of users marked it as 'favorite' and 'watchlist' for the data, release date and more other metrics") +
       guides(fill = FALSE) +
       theme(plot.caption = element_text(hjust = 0.5))
   )
